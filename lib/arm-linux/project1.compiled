@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1649687632"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -l -vewnhibq -Fi/home/usama/Плеер/lib/arm-linux -Fu/usr/lib/lazarus/2.2.0/lcl/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/2.2.0/lcl/units/arm-linux -Fu/usr/lib/lazarus/2.2.0/components/freetype/lib/arm-linux -Fu/usr/lib/lazarus/2.2.0/components/lazutils/lib/arm-linux -Fu/usr/lib/lazarus/2.2.0/packager/units/arm-linux -Fu/home/usama/Плеер/ -FU/home/usama/Плеер/lib/arm-linux/ -FE/home/usama/Плеер/ -o/home/usama/Плеер/project1 -dLCL -dLCLgtk2 project1.lpr"/>
+</CONFIG>
