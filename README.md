@@ -16,3 +16,8 @@ Specifically for small screens, there is an option to display only the playlist,
 
 Специально для небольших экранов есть возможность оставить отображение только плейлиста, а всё управление возможно без использования мыши (в том числе и прокрутка списков)
 ![min_interface](https://github.com/user-attachments/assets/10ace816-6593-4282-933b-e7e03b478a11)
+
+The program supports multilingualism through i18n.
+
+Программа поддерживает многоязычность через i18n
+![umocplayer_lang](https://github.com/user-attachments/assets/826e4cb0-f30b-404d-a5ac-567fa9daab33)
