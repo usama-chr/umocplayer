@@ -1,0 +1,213 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: tform1.button1.caption
+msgid "Добавить"
+msgstr ""
+
+#: tform1.button10.caption
+msgid "Clear"
+msgstr "Löschen"
+
+#: tform1.button11.caption
+msgid "Delete"
+msgstr "Hinzufügen"
+
+#: tform1.button12.caption
+msgid "⏭"
+msgstr ""
+
+#: tform1.button13.caption
+msgid "⏮"
+msgstr ""
+
+#: tform1.button14.caption
+msgctxt "tform1.button14.caption"
+msgid "▶"
+msgstr ""
+
+#: tform1.button14.hint
+msgid "Проиграть без добавления в плейлист"
+msgstr ""
+
+#: tform1.button15.caption
+msgid "↑"
+msgstr ""
+
+#: tform1.button16.caption
+msgid "↓"
+msgstr ""
+
+#: tform1.button17.caption
+msgid "↶"
+msgstr ""
+
+#: tform1.button18.caption
+msgid "⚙"
+msgstr ""
+
+#: tform1.button19.caption
+msgid "Lyrics"
+msgstr "Liedtext"
+
+#: tform1.button2.caption
+msgid "Refresh filelist"
+msgstr "Dateiliste aktualisieren"
+
+#: tform1.button3.caption
+msgctxt "tform1.button3.caption"
+msgid "▶"
+msgstr ""
+
+#: tform1.button4.caption
+msgid "⏸"
+msgstr ""
+
+#: tform1.button5.caption
+msgid "⏹"
+msgstr ""
+
+#: tform1.button6.caption
+msgid "-10"
+msgstr ""
+
+#: tform1.button7.caption
+msgid "+10"
+msgstr ""
+
+#: tform1.button8.caption
+msgid "Add to playlist"
+msgstr "Zur Playlist hinzufügen"
+
+#: tform1.button9.caption
+msgid "Сохранить плейлист"
+msgstr "Playlist speichern"
+
+#: tform1.caption
+msgctxt "tform1.caption"
+msgid "Player"
+msgstr "Player"
+
+#: tform1.checkbox1.caption
+msgid "Files"
+msgstr "Dateien"
+
+#: tform1.checkbox2.caption
+msgid "🔀"
+msgstr ""
+
+#: tform1.label1.caption
+msgid "Time"
+msgstr ""
+
+#: tform1.menuitem1.caption
+msgid "Удалить"
+msgstr "Hinzufügen"
+
+#: tform2.button1.caption
+msgid "Select folder"
+msgstr "Verzeichnis auswählen"
+
+#: tform2.button2.caption
+msgid "Delete duplicates from a playlist"
+msgstr "Duplikate aus einer Playlist entfernen"
+
+#: tform2.button3.caption
+msgid "Save the playlist to a file"
+msgstr "Playlist in eine Datei speichern"
+
+#: tform2.button4.caption
+msgid "Load a playlist"
+msgstr "Playlist laden"
+
+#: tform2.caption
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: tform2.checkbox1.caption
+msgid "Store the playlist in the music folder (for syncing with other devices)"
+msgstr "Playlist im Musikordner speichern (zur Synchronisierung mit anderen Geräten)"
+
+#: tform2.checkbox2.caption
+msgid "The names of the buttons are in Unicode characters (it doesn't work everywhere, but I didn't figure out why)"
+msgstr "Die Namen der Schaltflächen sind in Unicode-Zeichen (funktioniert nicht überall, aber ich habe nicht herausgefunden, warum)"
+
+#: tform2.checkbox3.caption
+msgid "Logging (~/player_log). Attention! The log is cleared every time the program is started"
+msgstr "Protokollierung (~/player_log). Achtung! Das Protokoll wird jedes Mal beim Starten des Programms gelöscht"
+
+#: tform2.edit2.text
+msgid "no_token"
+msgstr "no_token"
+
+#: tform2.label1.caption
+msgid "Patch to the music folder:"
+msgstr "Pfad zum Musikordner:"
+
+#: tform2.label2.caption
+msgid "Token for genius.com"
+msgstr "Token für genius.com"
+
+#: unit1.sbuttonlyricsanotherversion
+#, object-pascal-format
+msgid "Another version (%d of %d is shown)"
+msgstr "Eine andere Version (%d von %d wird angezeigt)"
+
+#: unit1.sbuttonlyricsclose
+msgid "Close"
+msgstr "Schließen"
+
+#: unit1.sform1caption
+msgctxt "unit1.sform1caption"
+msgid "Player"
+msgstr "Player"
+
+#: unit1.smessagemanymissingfiles
+msgid "Too many missing files. Stopping"
+msgstr "Zu viele fehlende Dateien. Stopp"
+
+#: unit1.smessagenolinks
+msgid "For some reason, there is no file with the list of links to the lyrics"
+msgstr "Aus irgendeinem Grund gibt es keine Datei mit der Liste der Links zu den Liedtexten"
+
+#: unit1.smessagenomusicpath
+msgid "The path to the music folder is not set or does not exist. Please check"
+msgstr "Der Pfad zum Musikordner ist nicht gesetzt oder existiert nicht. Bitte überprüfen Sie"
+
+#: unit1.smessagenotitles
+msgid "For some reason, there is no file with the list of titles from the site"
+msgstr "Aus irgendeinem Grund gibt es keine Datei mit der Liste der Titel von der Website"
+
+#: unit1.smessagerestoredplaylist
+msgid "The copy that was created at the start of the program has been restored"
+msgstr "Die beim Start des Programms erstellte Kopie wurde wiederhergestellt"
+
+#: unit1.snolyricscaption
+msgid "The lyrics were not found"
+msgstr "Die Liedtexte wurden nicht gefunden."
+
+#: unit1.snolyricstext
+msgid ""
+"1) Check the tags: look at the window title — if it shows garbled text or is empty, nothing will be found, as this is the data used for the text search;\n"
+"2) Check your internet connection;\n"
+"3) Verify that the lyrics exists on the website genius.com — the program searches for songs there;\n"
+"4) Did you enter your token for genius.com in the settings? Visit https://genius.com/api-clients to register."
+msgstr ""
+"1) Überprüfen Sie die Tags: Schauen Sie sich den Fenstertitel an — wenn er unleserlichen Text anzeigt oder leer ist, wird nichts gefunden, da diese Daten für die Textsuche verwendet werden;\n"
+"2) Überprüfen Sie Ihre Internetverbindung;\n"
+"3) Stellen Sie sicher, dass die Liedtexte auf der Website genius.com existieren — das Programm sucht dort nach Liedtexten;\n"
+"4) Haben Sie Ihren Token für genius.com in den Einstellungen eingegeben? Besuchen Sie https://genius.com/api-clients, um sich zu registrieren."
+
+#: unit2.smessagepathchanged
+msgid "The path has been changed, starting to update the file list"
+msgstr "Der Pfad wurde geändert, beginne mit der Aktualisierung der Dateiliste"

@@ -117,8 +117,8 @@ msgid "Удалить"
 msgstr ""
 
 #: tform2.button1.caption
-msgid "Select (if you edit manually, just close the window)"
-msgstr "Выбрать (если редактируете вручную - просто закройте окно)"
+msgid "Select folder"
+msgstr "Выбрать папку с музыкой"
 
 #: tform2.button2.caption
 msgid "Delete duplicates from a playlist"

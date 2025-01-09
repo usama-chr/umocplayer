@@ -49,7 +49,7 @@ var
   i, k : integer;
 
   resourcestring
-    SMessagePathChanged = 'The path has been changed, starting to update the file list.';
+    SMessagePathChanged = 'The path has been changed, starting to update the file list';
 
 implementation
 

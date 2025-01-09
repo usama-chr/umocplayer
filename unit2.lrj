@@ -1,6 +1,6 @@
 {"version":1,"strings":[
 {"hash":213582195,"name":"tform2.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
-{"hash":132631673,"name":"tform2.button1.caption","sourcebytes":[83,101,108,101,99,116,32,40,105,102,32,121,111,117,32,101,100,105,116,32,109,97,110,117,97,108,108,121,44,32,106,117,115,116,32,99,108,111,115,101,32,116,104,101,32,119,105,110,100,111,119,41],"value":"Select (if you edit manually, just close the window)"},
+{"hash":253268210,"name":"tform2.button1.caption","sourcebytes":[83,101,108,101,99,116,32,102,111,108,100,101,114],"value":"Select folder"},
 {"hash":39329018,"name":"tform2.label1.caption","sourcebytes":[80,97,116,99,104,32,116,111,32,116,104,101,32,109,117,115,105,99,32,102,111,108,100,101,114,58],"value":"Patch to the music folder:"},
 {"hash":50712404,"name":"tform2.button2.caption","sourcebytes":[68,101,108,101,116,101,32,100,117,112,108,105,99,97,116,101,115,32,102,114,111,109,32,97,32,112,108,97,121,108,105,115,116],"value":"Delete duplicates from a playlist"},
 {"hash":230018261,"name":"tform2.button3.caption","sourcebytes":[83,97,118,101,32,116,104,101,32,112,108,97,121,108,105,115,116,32,116,111,32,97,32,102,105,108,101],"value":"Save the playlist to a file"},

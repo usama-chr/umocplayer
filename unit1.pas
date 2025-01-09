@@ -401,13 +401,16 @@ procedure FindPlayIndex;      // процедура для получения и
 begin
   if Form1.CheckBox2.Checked = false then
      begin
-          For i:= 0 to Form1.ListBox6.Items.Count - 1 do
-          begin
-               If Copy (Form1.ListBox6.Items[i], 6, Length(Form1.ListBox6.Items[i])) = OldPlayName then
-                  begin
-                       PlayIndex := i;
-                  end;
-          end;
+        If form1.ListBox6.items.count > 0 then
+           begin
+                For i:= 0 to Form1.ListBox6.Items.Count - 1 do
+                    begin
+                         If Copy (Form1.ListBox6.Items[i], 6, Length(Form1.ListBox6.Items[i])) = OldPlayName then
+                            begin
+                                 PlayIndex := i;
+                            end;
+                    end;
+           end;
      end
   else
   begin
@@ -560,11 +563,16 @@ end;
 
 procedure TForm1.Button12Click(Sender: TObject);
 begin
+  If Form1.ListBox6.Items.Count > 0 then
+           begin
   FindPlayIndex;
-  if Form1.CheckBox2.Checked = false then
-     begin
-          If PlayIndex >= Form1.ListBox2.Items.Count-1 then PlayIndex := 0 else PlayIndex := PlayIndex + 1; // если рандом включен, то переходим к тому, что выдала процедура findplayindex, если выключен, то на следующий элемент плейлиста (If random is enabled, go to the index provided by the findplayindex procedure; if disabled, move to the next item in the playlist)
-     end;
+
+
+                if Form1.CheckBox2.Checked = false then
+                   begin
+                        If PlayIndex >= Form1.ListBox2.Items.Count-1 then PlayIndex := 0 else PlayIndex := PlayIndex + 1; // если рандом включен, то переходим к тому, что выдала процедура findplayindex, если выключен, то на следующий элемент плейлиста (If random is enabled, go to the index provided by the findplayindex procedure; if disabled, move to the next item in the playlist)
+                   end;
+
   // потому что если рандом выключен, то findplayindex выдаёт номер текущей играющей песни, а если включен, то запускает процедуру randomplay, которая выдаёт рандомный номер
   // и если после этого добавить ещё единицу к номеру, то получается, что играет не та песня, которую нашёл randomplay, а следующая. Таким образом не может работать
   // переход на предыдущую выбранную рандомом песню.
@@ -573,6 +581,8 @@ begin
   // If you then add one to that index, the song that plays is not the one found by randomplay, but the next one.
   // This way, the transition to the previously randomly selected song cannot work.)
   Form1.Button3.Click;
+
+           end;
 end;
 
 procedure TForm1.Button13Click(Sender: TObject);
@@ -583,6 +593,8 @@ begin
   //Form1.Button3.Click;
   //конец оригинальной процедуры
 
+  If Form1.ListBox6.Items.Count > 0 then
+           begin
 
   // изменения в этой процедуре посвящены Николаусу Вирту, написаны они 10.01.2024 (The changes in this procedure are dedicated to Nikolaus Virtu, written on 10.01.2024)
   if Form1.CheckBox2.Checked = false then      // если рандом не включен, то делаем как раньше - переход к предыдущему пункту плейлиста (If random is not enabled, proceed as before – go to the previous item in the playlist)
@@ -616,7 +628,7 @@ begin
           PlayIndex := random_indexes[i_random];
           Form1.Button3.Click;
      end;
-
+   end;
 
 end;
 
@@ -735,7 +747,7 @@ var
   ScreenCenterX, ScreenCenterY: Integer;
 begin
 
-  If (Status <> 'Stop') and (Status <> '') then        // если что-то воспроизводится или стоит на паузе, то код этой кнопки может быть выполнен (If something is playing or paused, the code for this button can be executed)
+  If (Status <> 'Stop') and (Status <> '') and (Form1.ListBox6.Items.Count > 0) then        // если что-то воспроизводится или стоит на паузе, то код этой кнопки может быть выполнен (If something is playing or paused, the code for this button can be executed)
      begin
           // закрытие старой формы, если она существует (Closing the old form if it exists)
           if Assigned(TextForm) then
@@ -995,7 +1007,7 @@ procedure TForm1.Button2Click(Sender: TObject);
 begin
 
   {command := 'find ' + MusicFolder + ' -exec sh -c ''file "{}" | grep -q "mp3"'' \; -print > ' + ExtractFilePath(Application.ExeName) + 'filelist';}
-  command := 'find ' + MusicFolder + ' | grep -i -P "flac|mp3|aac|ogg|wav|wma" | sort -f --output="' + ExtractFilePath(Application.ExeName) + '"filelist';     //поиск файлов в указанной папке   (Searching for files in the specified folder)
+  command := 'find "' + MusicFolder + '" -type f | grep -i -P "\.(flac|mp3|aac|ogg|wav|wma)$" | sort -f --output="' + ExtractFilePath(Application.ExeName) + 'filelist"';     //поиск файлов в указанной папке   (Searching for files in the specified folder)
   RunCommand('/bin/bash',['-c', command],s);
   Form1.ListBox1.Items.LoadFromFile(ExtractFilePath(Application.ExeName) + 'filelist'); //загружаем список файлов в ListBox1   (Loading the list of files into ListBox1)
   FoldersForListbox3; //выполняем процедуру обновления первого окна (там находятся первые папки после корня)  (Executing the procedure to update the first window (where the first folders after the root are located))
@@ -1003,7 +1015,8 @@ end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
-
+  if PlayIndex >= 0 then  //защита от пустого плейлиста  (Protection against an empty playlist)
+           begin
   // убираем треугольник   (Removing the triangle)
  For i:= 0 to Form1.ListBox6.Items.Count - 1 do    //по всему короткому плейлисту...  (Going through the entire short playlist...)
         begin
@@ -1013,12 +1026,22 @@ begin
                 end;
         end;
 
+
+ If CountFileFind >= 10 then     // если счётчки неудачных открытий файла превысил 9, прекращаем попытки  (If the count of failed file openings exceeds 9, stop the attempts)
+    begin
+         Button5.Click;    // нажимаем на кнопку СТОП    (Pressing the STOP button)
+         Status := 'NotFindFile';                    // статус программы - не нашёл файл   (Program status - file not found)
+         ShowMessage (SMessageManyMissingFiles);
+    end
+ else Status := 'NormalPlay';   // если файл открылся и запустился - ставим статус программы как нормальное воспроизведение   (If the file opened and started playing, set the program status to normal playback)
+
+
  // защита от отсутствующих файлов   (Protection against missing files)
  i := 0;
  While i < 3 do
         begin
-             If FileExists(Form1.ListBox2.Items[PlayIndex]) = true then   //если файл найден - включаем воспроизведение   (If the file is found, start playback)
-                begin
+                If FileExists(Form1.ListBox2.Items[PlayIndex]) = true then   //если файл найден - включаем воспроизведение   (If the file is found, start playback)
+                   begin
 
                      //command := 'mocp -l ' + '''' + Form1.ListBox2.Items[PlayIndex] + '''';
 
@@ -1051,27 +1074,22 @@ begin
                      NoTopIndex := false;  //снимаем запрет на установку текущей песни в середину видимой части плейлиста. Нужно редко, сейчас только когда вручную выбирается последняя песня из списка
                                            //(Removing the restriction on setting the current song to the middle of the visible part of the playlist. This is rarely needed, currently only when the last song from the list is selected manually)
 
-                end
+                   end
              else
                  begin
                   Sleep(1000);  // если файл не нашёлся тормозим программу на секунду и увеличиваем счётчик неудачных поисков файла на один
                                 //(If the file is not found, pause the program for a second and increase the count of failed file searches by one)
                   CountFileFind := CountFileFind + 1;
                  end;
-             i := i +1;    //повторяем цикл попытки открытия файла (Repeating the cycle of trying to open the file)
+        i := i +1;    //повторяем цикл попытки открытия файла (Repeating the cycle of trying to open the file)
+
         end;
 
- If CountFileFind >= 10 then     // если счётчки неудачных открытий файла превысил 9, прекращаем попытки  (If the count of failed file openings exceeds 9, stop the attempts)
-    begin
-         Button5.Click;    // нажимаем на кнопку СТОП    (Pressing the STOP button)
-         Status := 'NotFindFile';                    // статус программы - не нашёл файл   (Program status - file not found)
-         ShowMessage (SMessageManyMissingFiles);
-    end
- else Status := 'NormalPlay';   // если файл открылся и запустился - ставим статус программы как нормальное воспроизведение   (If the file opened and started playing, set the program status to normal playback)
 
 
 
 
+    end else Status := 'STOP';
 
   //OldPlayIndex := PlayIndex;
   //ShowMessage ('LB6: ' + Form1.ListBox6.Items[PlayIndex] + 'LB2: ' + Form1.ListBox2.Items[PlayIndex]);
@@ -1577,14 +1595,18 @@ procedure TForm1.ListBox3MouseMove(Sender: TObject; Shift: TShiftState; X,
 var
   Delta: Integer;
 begin
-  if FMouseDown then
+ If Form1.ListBox3.items.count > 0 then  //если список пустой, то ничего не делаем  (If the list is empty, do nothing)
   begin
-    Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculating the difference in mouse position)
-    ListBox3.TopIndex := FScrollOffset + Delta div ListBox3.ItemHeight;
-    if ListBox3.TopIndex < 0 then
-      ListBox3.TopIndex := 0;
-    if ListBox3.TopIndex > ListBox3.Count - 1 then
-      ListBox3.TopIndex := ListBox3.Count - 1;
+       if FMouseDown then
+       begin
+            Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculating the difference in mouse position)
+            ListBox3.TopIndex := FScrollOffset + Delta div ListBox3.ItemHeight;
+            if ListBox3.TopIndex < 0 then
+            ListBox3.TopIndex := 0;
+            if ListBox3.TopIndex > ListBox3.Count - 1 then
+            ListBox3.TopIndex := ListBox3.Count - 1;
+       end;
+
   end;
 end;
 
@@ -1622,14 +1644,18 @@ procedure TForm1.ListBox4MouseMove(Sender: TObject; Shift: TShiftState; X,
 var
   Delta: Integer;
 begin
-  if FMouseDown then
+ If Form1.ListBox4.items.count > 0 then  //если список пустой, то ничего не делаем  (If the list is empty, do nothing)
   begin
-    Delta := FStartY - Y; // вычисляем разницу положения мыши  (Calculating the difference in mouse position)
-    ListBox4.TopIndex := FScrollOffset + Delta div ListBox4.ItemHeight;
-    if ListBox4.TopIndex < 0 then
-      ListBox4.TopIndex := 0;
-    if ListBox4.TopIndex > ListBox4.Count - 1 then
-      ListBox4.TopIndex := ListBox4.Count - 1;
+       if FMouseDown then
+       begin
+            Delta := FStartY - Y; // вычисляем разницу положения мыши  (Calculating the difference in mouse position)
+            ListBox4.TopIndex := FScrollOffset + Delta div ListBox4.ItemHeight;
+            if ListBox4.TopIndex < 0 then
+            ListBox4.TopIndex := 0;
+            if ListBox4.TopIndex > ListBox4.Count - 1 then
+            ListBox4.TopIndex := ListBox4.Count - 1;
+            end;
+
   end;
 end;
 
@@ -1667,15 +1693,19 @@ procedure TForm1.ListBox5MouseMove(Sender: TObject; Shift: TShiftState; X,
 var
   Delta: Integer;
 begin
-  if FMouseDown then
-  begin
-    Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculating the difference in mouse position)
-    ListBox5.TopIndex := FScrollOffset + Delta div ListBox5.ItemHeight;
-    if ListBox5.TopIndex < 0 then
-      ListBox5.TopIndex := 0;
-    if ListBox5.TopIndex > ListBox5.Count - 1 then
-      ListBox5.TopIndex := ListBox5.Count - 1;
-  end;
+     If Form1.ListBox5.items.count > 0 then  //если список пустой, то ничего не делаем  (If the list is empty, do nothing)
+     begin
+          if FMouseDown then
+          begin
+               Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculating the difference in mouse position)
+               ListBox5.TopIndex := FScrollOffset + Delta div ListBox5.ItemHeight;
+               if ListBox5.TopIndex < 0 then
+               ListBox5.TopIndex := 0;
+               if ListBox5.TopIndex > ListBox5.Count - 1 then
+               ListBox5.TopIndex := ListBox5.Count - 1;
+               end;
+
+     end;
 end;
 
 procedure TForm1.ListBox5MouseUp(Sender: TObject; Button: TMouseButton;
@@ -1728,14 +1758,18 @@ var
 begin
      //прокрутка по-мобильному (с зажатой левой кнопкой мыши) --- отсюда  (то же самое в других listbox-ах, которые видит пользователь)
  // (Mobile-style scrolling (with the left mouse button held down) --- from here)
-  if FMouseDown then
+
+  If Form1.ListBox6.items.count > 0 then  //если список пустой, то ничего не делаем  (If the list is empty, do nothing)
   begin
-    Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculate the difference in mouse position)
-    ListBox6.TopIndex := FScrollOffset + Delta div ListBox6.ItemHeight;
-    if ListBox6.TopIndex < 0 then
-      ListBox6.TopIndex := 0;
-    if ListBox6.TopIndex > ListBox6.Count - 1 then
-      ListBox6.TopIndex := ListBox6.Count - 1;
+       if FMouseDown then
+        begin
+        Delta := FStartY - Y; // вычисляем разницу положения мыши   (Calculate the difference in mouse position)
+        ListBox6.TopIndex := FScrollOffset + Delta div ListBox6.ItemHeight;
+         if ListBox6.TopIndex < 0 then
+         ListBox6.TopIndex := 0;
+         if ListBox6.TopIndex > ListBox6.Count - 1 then
+         ListBox6.TopIndex := ListBox6.Count - 1;
+         end;
   end;
   //прокрутка по-мобильному (с зажатой левой кнопкой мыши) --- досюда    (Mobile-style scrolling (with the left mouse button held down) --- until here)
 end;

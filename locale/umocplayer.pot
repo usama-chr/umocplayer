@@ -105,7 +105,7 @@ msgid "Удалить"
 msgstr ""
 
 #: tform2.button1.caption
-msgid "Select (if you edit manually, just close the window)"
+msgid "Select folder"
 msgstr ""
 
 #: tform2.button2.caption
