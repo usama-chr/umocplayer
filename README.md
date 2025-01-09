@@ -1,6 +1,6 @@
-This is an interface for the moc player. To use it, you will need the player (apt install moc) and jq (apt install jq)
+This is an interface for the MOC player. MOC and jq are required for it to work. Install them using a method suitable for your distribution (for Debian: apt install moc jq).
 
-Это интерфейс для плеера moc. Для работы потребуется плеер (apt install moc) и jq (apt install jq).
+Это интерфейс для плеера moc. Для работы потребуется moc и jq. Установите их способом, подходящим для Вашего дистрибутива (для debian: apt install moc jq).
 
 Originally, this program was written to work with a sound amplifier prototype, but it quickly outgrew the original scope and continued as a hobby project. However, it still works well on low-performance devices with touchscreens, which was its intended purpose
 
